@@ -1,0 +1,47 @@
+<%- include('header'); -%>
+<br><br>
+<link rel="stylesheet" href="../stylesheets/style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet"> 
+<% if(students.length>0) { %>
+
+<table border="1">
+        <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Mail</th>
+                <th>Branch</th>
+                <th>College</th>
+                <th>State</th>
+                <th>Address</th>
+                <th>Age</th>
+                <th>Phone</th>
+                <th>Username</th>
+                <th>Action</th>
+        </tr>
+        <% for(var i=0; i<students.length;i++) { %>
+                <tr>
+                  <td><%= students[i].SID %></td>
+                  <td><%= students[i].SName %></td>
+                  <td><%= students[i].SMail %></td>
+                  <td><%= students[i].SBranch %></td>
+                  <td><%= students[i].SCollege %></td>
+                  <td><%= students[i].SState %></td>
+                  <td><%= students[i].SAddress %></td>
+                  <td><%= students[i].SAge %></td>
+                  <td><%= students[i].SPhone %></td>
+                  <td><%= students[i].SUsername %></td>
+                  <td>
+                          <a href='/edit/<%= students[i].SID %>'>Edit</a> | 
+                          <a href='/delete/<%= students[i].SID %>'>Delete</a>                
+                  </td>
+                </tr>
+              <% } %>
+        
+</table>
+
+<% } else { %>
+        <br><br>
+        No Record Found
+<% } %>

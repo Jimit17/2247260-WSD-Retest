@@ -1,0 +1,59 @@
+<%- include('header'); -%>
+<br><br>
+<head>
+    <link rel="stylesheet" href="../stylesheets/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet"> 
+</head>
+<body>
+<div id="reg">
+<form method="post">
+    <table>
+        <tr>
+            <td>Enter State : </td>
+            <td>
+                <input id="st" onblur="validateSt()" type="text" placeholder="Enter State Name" name="s_st" required> </td>
+                <div id="errdiv" style="margin-left:-10px;">
+                    <span id="error2"></span>
+                </div>
+        </tr>
+        <tr>
+            <td>
+                <center><input type="submit" class="btn1" value="Search"></center>
+            </td>
+        </tr>
+    </table>
+</form>
+<script>
+    const element2 = document.getElementById("st");
+        element2.addEventListener("keypress", function (e) 
+        {
+            preventnum(e);
+        });
+
+        function preventnum(e) {
+            if (!isNaN(e.key)) {
+                e.preventDefault();
+            }
+        }
+
+        function validateSt()
+        {
+            var regName =  /^[a-zA-Z ]{2,30}$/;
+            var name = document.getElementById('st').value;
+            var error = document.getElementById("error2");
+            if (!regName.test(name) && name!='')
+            {
+                error.textContent = "Please enter a valid Department";
+                document.getElementById("st").value='';
+                document.getElementById("st").focus();
+            }
+            else 
+            {
+                error.textContent = ""
+            }
+        }
+</script>
+</body>
+</div>

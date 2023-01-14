@@ -1,0 +1,59 @@
+<%- include('header'); -%>
+<br><br>
+<head>
+    <link rel="stylesheet" href="../stylesheets/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet"> 
+</head>
+<body>
+<div id="reg">
+<form method="post">
+    <table>
+        <tr>
+            <td>Enter ID : </td>
+            <td>
+                <input id="ui" onblur="validateID()" type="number" placeholder="Enter ID" name="s_id" required> </td>
+                <div id="errdiv" style="margin-left:-10px;">
+                    <span id="error3"></span>
+                </div>
+        </tr>
+        <tr>
+            <td>
+                <center><input type="submit" class="btn1" value="Search"></center>
+            </td>
+        </tr>
+    </table>
+</form>
+<script>
+    const element4 = document.getElementById("ui");
+        element4.addEventListener("keypress", function (e) 
+        {
+           preventalpha(e);
+        });
+
+        function preventalpha(e) {
+          if (isNaN(e.key)) {
+              e.preventDefault();
+          }
+        }
+
+        function validateID()
+        {
+            var regPhone =  /^[0-9]{1,11}$/;
+            var phone = document.getElementById('ui').value;
+            var error = document.getElementById("error3");
+            if (!regPhone.test(phone) && phone!='')
+            {
+                error.textContent = "Please enter a valid ID";
+                document.getElementById("ui").focus();
+                document.getElementById("ui").value='';
+            }
+            else 
+            {
+                error.textContent = ""
+            }
+        }
+</script>
+</body>
+</div>

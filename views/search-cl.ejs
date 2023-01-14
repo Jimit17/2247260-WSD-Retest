@@ -1,0 +1,47 @@
+<%- include('header'); -%>
+<br><br>
+<head>
+    <link rel="stylesheet" href="../stylesheets/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet"> 
+</head>
+<body>
+<div id="reg">
+<form method="post">
+    <table>
+        <tr>
+            <td>Enter College : </td>
+            <td>
+                <input id="cl" onblur="validateDept()" type="text" placeholder="Enter College Name" name="s_cl" required> </td>
+                <div id="errdiv" style="margin-left:-10px;">
+                    <span id="error2"></span>
+                </div>
+        </tr>
+        <tr>
+            <td>
+                <center><input type="submit" class="btn1" value="Search"></center>
+            </td>
+        </tr>
+    </table>
+</form>
+<script>
+        function validateCl()
+        {
+            var regName =  /^[a-zA-Z ]{2,50}$/;
+            var name = document.getElementById('cl').value;
+            var error = document.getElementById("error2");
+            if (!regName.test(name) && name!='')
+            {
+                error.textContent = "Please enter a valid College";
+                document.getElementById("cl").value='';
+                document.getElementById("cl").focus();
+            }
+            else 
+            {
+                error.textContent = ""
+            }
+        }
+</script>
+</body>
+</div>

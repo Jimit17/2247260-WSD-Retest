@@ -1,0 +1,325 @@
+<%- include('header'); -%>
+<br><br>
+<head>
+    <link rel="stylesheet" href="../stylesheets/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <title>Register</title>
+</head>
+<body>
+    <div id="reg">
+    <h1>Student Registration</h1>
+    <form method="post">
+        <table>
+            <tr>
+                <td>Name : </td>
+                <td>
+                    <input id="nm" type="text" placeholder="Enter your Name" name="s_name" onblur="validateName()" required> </td>
+                    <div id="errdiv" style="margin-left:-10px;">
+                        <span id="error"></span>
+                    </div>
+            </tr>
+            <tr>
+                <td>Email :</td>
+                <td>
+                    <input id="em" type="email" placeholder="Enter your Email Adress" name="s_mail" maxlength="30" onblur="validateMl()" required>
+                    <div id="errdiv" style="margin-left:-10px;">
+                        <span id="error1"></span>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>Branch :</td>
+                <td>
+                    <input id="br" type="text" placeholder="Enter your Branch" name="s_branch" onblur="validateBr()" required>
+                    <div id="errdiv" style="margin-left:-10px;">
+                        <span id="error2"></span>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>College :</td>
+                <td>
+                    <input id="cl" type="text" placeholder="Enter your College Name" name="s_college" onblur="validateCl()" required>
+                    <div id="errdiv" style="margin-left:-10px;">
+                        <span id="error3"></span>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>State :</td>
+                <td>
+                    <input id="st" type="text" placeholder="Enter your State Name" name="s_state" onblur="validateSt()" required>
+                    <div id="errdiv" style="margin-left:-10px;">
+                        <span id="error4"></span>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>Address :</td>
+                <td>
+                    <input id="add" type="text" placeholder="Enter your Address" name="s_add" onblur="validateAdd()" required>
+                    <div id="errdiv" style="margin-left:-10px;">
+                        <span id="error5"></span>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>Age :</td>
+                <td>
+                    <input id="ag" type="number" placeholder="Enter your Age" name="s_age" onblur="validateAg()" required>
+                    <div id="errdiv" style="margin-left:-10px;">
+                        <span id="error6"></span>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>Phone Number :</td>
+                <td>
+                    <input id="ph" type="number" placeholder="Enter your Phone Number" name="s_phone" onblur="validatePh()" required>
+                    <div id="errdiv" style="margin-left:-10px;">
+                        <span id="error7"></span>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>Username :</td>
+                <td>
+                    <input id="ur" type="text" placeholder="Enter your Username" name="s_user" maxlength="30" required>
+                </td>
+            </tr>
+            <tr>
+                <td>Password :</td>
+                <td>
+                    <input id="ps" type="text" placeholder="Enter your Password" name="s_pass" onblur="validatePs()" required>
+                </td>
+            </tr>
+            <tr>
+                <td>Confirm Password :</td>
+                <td>
+                    <input id="psr" type="text" placeholder="Enter your Confirm Password" name="s_passr" onblur="validatePs()" required>
+                    <div id="errdiv" style="margin-left:-10px;">
+                        <span id="error0"></span>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <center>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<input type="submit" class="btn" value="Register"></center>
+                </td>
+            </tr>
+        </table>
+    </form>
+    <script>
+        const element = document.getElementById("em");
+        element.addEventListener("keypress", function (e) 
+        {
+            preventnum(e);
+        });
+
+        const element1 = document.getElementById("br");
+        element1.addEventListener("keypress", function (e) 
+        {
+            preventnum(e);
+        });
+
+        const element2 = document.getElementById("nm");
+        element2.addEventListener("keypress", function (e) 
+        {
+            preventnum(e);
+        });
+
+        const element4 = document.getElementById("st");
+        element4.addEventListener("keypress", function (e) 
+        {
+            preventnum(e);
+        });
+
+
+        function preventnum(e) {
+            if (!isNaN(e.key)) {
+                e.preventDefault();
+            }
+        }
+
+        const element6 = document.getElementById("ag");
+        element6.addEventListener("keypress", function (e) 
+        {
+           preventalpha(e);
+        });
+
+        const element7 = document.getElementById("ph");
+        element7.addEventListener("keypress", function (e) 
+        {
+           preventalpha(e);
+        });
+
+        function preventalpha(e) {
+          if (isNaN(e.key)) {
+              e.preventDefault();
+          }
+        }
+
+        function validateName()
+        {
+            var regName =  /^[a-zA-Z ]{2,50}$/;
+            var name = document.getElementById('nm').value;
+            var error = document.getElementById("error");
+            if (!regName.test(name) && name!='')
+            {
+                error.textContent = "Please enter a valid Name";
+                document.getElementById("nm").value='';
+                document.getElementById("nm").focus();
+            }
+            else 
+            {
+                error.textContent = ""
+            }
+        }
+
+        function validateBr()
+        {
+            var regName =  /^[a-zA-Z ]{2,30}$/;
+            var name = document.getElementById('br').value;
+            var error = document.getElementById("error2");
+            if (!regName.test(name) && name!='')
+            {
+                error.textContent = "Please enter a valid Branch Name";
+                document.getElementById("br").value='';
+                document.getElementById("br").focus();
+            }
+            else 
+            {
+                error.textContent = ""
+            }
+        }
+
+        function validateMl()
+        {
+            var regEmail = /^[A-Za-z0-9._%+-]+@[A-Za-z]+\.christuniversity\.in$/;
+            var email = document.getElementById('em').value;
+            var error = document.getElementById("error1");
+            if (!regEmail.test(email) && email!='')
+            {
+                error.textContent = "Please enter a valid email";
+                document.getElementById("em").focus();
+            }
+            else 
+            {
+                error.textContent = ""
+            }
+        }
+
+        function validateCl()
+        {
+            var regName =  /^[a-zA-Z ]{2,50}$/;
+            var name = document.getElementById('cl').value;
+            var error = document.getElementById("error3");
+            if (!regName.test(name) && name!='')
+            {
+                error.textContent = "Please enter a valid College Name";
+                document.getElementById("cl").value='';
+                document.getElementById("cl").focus();
+            }
+            else 
+            {
+                error.textContent = ""
+            }
+        }
+
+        function validateSt()
+        {
+            var regName =  /^[a-zA-Z ]{2,30}$/;
+            var name = document.getElementById('st').value;
+            var error = document.getElementById("error4");
+            if (!regName.test(name) && name!='')
+            {
+                error.textContent = "Please enter a valid State";
+                document.getElementById("st").value='';
+                document.getElementById("st").focus();
+            }
+            else 
+            {
+                error.textContent = ""
+            }
+        }
+
+        function validateAdd()
+        {
+            var regName =  /^[0-9,a-zA-Z ]{2,90}$/;
+            var name = document.getElementById('add').value;
+            var error = document.getElementById("error5");
+            if (!regName.test(name) && name!='')
+            {
+                error.textContent = "Please enter a valid Address";
+                document.getElementById("add").value='';
+                document.getElementById("add").focus();
+            }
+            else 
+            {
+                error.textContent = ""
+            }
+        }
+
+        function validateAg()
+        {
+            var regPhone =  /^[0-9]{1,3}$/;
+            var phone = document.getElementById('ag').value;
+            var error = document.getElementById("error6");
+            if (!regPhone.test(phone) && phone!='')
+            {
+                error.textContent = "Please enter a valid Age";
+                document.getElementById("ag").focus();
+                document.getElementById("ag").value='';
+            }
+            else 
+            {
+                error.textContent = ""
+            }
+        }
+
+        function validatePh()
+        {
+            var regPhone =  /^[0-9]{10}$/;
+            var phone = document.getElementById('ph').value;
+            var error = document.getElementById("error7");
+            if (!regPhone.test(phone) && phone!='')
+            {
+                error.textContent = "Please enter a valid Phone Number";
+                document.getElementById("ph").focus();
+                document.getElementById("ph").value='';
+            }
+            else 
+            {
+                error.textContent = ""
+            }
+        }
+
+        function validatePs()
+        {
+            var regpass=/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,20}$/;
+            var passwd = document.getElementById('ps').value;
+            var passwd1=document.getElementById('pasr').value;
+                var error = document.getElementById("error0");
+                if (!regpass.test(passwd) && passwd!='')
+                {
+                error.textContent = "Please enter a strong password";
+                document.getElementById("ps").focus();
+                }
+                else if((!regpass.test(passwd1) && passwd1!='')|| passwd!=passwd1) 
+                {
+                error.textContent = "Passwords do not match!!";
+                
+                document.getElementById("psr").focus();
+                }
+                
+                else 
+                {
+                error.textContent = ""
+                }
+        }
+    </script>
+</body>
+</div>
